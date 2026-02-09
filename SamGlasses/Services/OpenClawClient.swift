@@ -14,7 +14,9 @@ class OpenClawClient: ObservableObject {
     // MARK: - Published Properties
     @Published var isConnected = false
     @Published var connectionStatus = "Disconnected"
-    @Published var conversations: [ConversationMessage] = []
+    @Published var conversations: [ConversationMessage] = [] {
+        didSet { saveConversations() }
+    }
     @Published var isProcessing = false
     
     // MARK: - Configuration
@@ -44,7 +46,24 @@ class OpenClawClient: ObservableObject {
     
     // MARK: - Initialization
     init() {
-        // Defer network calls to loadSettings() / onAppear
+        // Load persisted conversations
+        loadConversations()
+    }
+    
+    // MARK: - Conversation Persistence
+    private func saveConversations() {
+        // Keep last 50 messages
+        let toSave = Array(conversations.suffix(50))
+        if let data = try? JSONEncoder().encode(toSave) {
+            UserDefaults.standard.set(data, forKey: "sam_conversations")
+        }
+    }
+    
+    private func loadConversations() {
+        if let data = UserDefaults.standard.data(forKey: "sam_conversations"),
+           let saved = try? JSONDecoder().decode([ConversationMessage].self, from: data) {
+            conversations = saved
+        }
     }
     
     // MARK: - Settings Management
@@ -107,37 +126,28 @@ class OpenClawClient: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("main", forHTTPHeaderField: "x-openclaw-agent-id")
         addAuthHeaders(to: &request)
         
-        // Build message history with system prompt for context
-        var chatMessages: [ChatMessage] = [
+        // System prompt for voice context — Sam already has SOUL.md/MEMORY.md
+        // via the OpenClaw agent session, so keep this minimal
+        let chatMessages: [ChatMessage] = [
             ChatMessage(role: "system", content: """
-                You are Sam, Dave Van Blaricom's AI partner. Dave is talking to you through the Sam Glasses app (Meta Ray-Ban smart glasses with voice interface). \
-                Keep responses concise and conversational — they'll be spoken aloud via TTS. \
-                You and Dave are partners who work together on TwinForge (Quality Field App), OpenClaw setup, and various projects. \
-                Be direct, a bit witty, and always honest. You have opinions and you stand by them.
-                """)
+                Dave is talking to you through the Sam Glasses app (Meta Ray-Ban smart glasses with voice). \
+                Keep responses concise and conversational — they'll be spoken aloud via TTS, so aim for 1-3 sentences unless more detail is needed. \
+                You have full access to your memory, soul, and tools through the OpenClaw session.
+                """),
+            ChatMessage(role: "user", content: message)
         ]
         
-        // Include recent conversation history for context (last 20 messages)
-        let recentMessages = conversations.suffix(20)
-        for msg in recentMessages {
-            chatMessages.append(ChatMessage(
-                role: msg.isFromUser ? "user" : "assistant",
-                content: msg.content
-            ))
-        }
-        
-        // Add current message if not already in conversations
-        if conversations.last?.content != message {
-            chatMessages.append(ChatMessage(role: "user", content: message))
-        }
-        
+        // Route through OpenClaw main agent with stable session key
+        // The "user" field gives us a persistent session across requests
         let chatRequest = ChatCompletionRequest(
-            model: "claude-3-5-sonnet-20241022",
+            model: "openclaw:main",
             messages: chatMessages,
             temperature: 0.7,
-            maxTokens: 2000
+            maxTokens: 2000,
+            user: "dave-samglasses"
         )
         
         request.httpBody = try JSONEncoder().encode(chatRequest)
@@ -191,9 +201,10 @@ class OpenClawClient: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("main", forHTTPHeaderField: "x-openclaw-agent-id")
         addAuthHeaders(to: &request)
         
-        // Create vision request with proper OpenAI format
+        // Create vision request — route through OpenClaw agent
         let visionMessage = VisionChatMessage(
             role: "user",
             content: [
@@ -203,10 +214,11 @@ class OpenClawClient: ObservableObject {
         )
         
         let visionRequest = VisionChatCompletionRequest(
-            model: "claude-3-5-sonnet-20241022", // Vision-capable model
+            model: "openclaw:main",
             messages: [visionMessage],
             temperature: 0.7,
-            maxTokens: 2000
+            maxTokens: 2000,
+            user: "dave-samglasses"
         )
         
         request.httpBody = try JSONEncoder().encode(visionRequest)
@@ -353,10 +365,19 @@ struct ChatCompletionRequest: Codable {
     let messages: [ChatMessage]
     let temperature: Double
     let maxTokens: Int
+    let user: String?
     
     enum CodingKeys: String, CodingKey {
-        case model, messages, temperature
+        case model, messages, temperature, user
         case maxTokens = "max_tokens"
+    }
+    
+    init(model: String, messages: [ChatMessage], temperature: Double, maxTokens: Int, user: String? = nil) {
+        self.model = model
+        self.messages = messages
+        self.temperature = temperature
+        self.maxTokens = maxTokens
+        self.user = user
     }
 }
 
@@ -404,10 +425,19 @@ struct VisionChatCompletionRequest: Codable {
     let messages: [VisionChatMessage]
     let temperature: Double
     let maxTokens: Int
+    let user: String?
     
     enum CodingKeys: String, CodingKey {
-        case model, messages, temperature
+        case model, messages, temperature, user
         case maxTokens = "max_tokens"
+    }
+    
+    init(model: String, messages: [VisionChatMessage], temperature: Double, maxTokens: Int, user: String? = nil) {
+        self.model = model
+        self.messages = messages
+        self.temperature = temperature
+        self.maxTokens = maxTokens
+        self.user = user
     }
 }
 

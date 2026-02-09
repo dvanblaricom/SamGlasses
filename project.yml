@@ -2,14 +2,13 @@ name: SamGlasses
 options:
   bundleIdPrefix: com.dvbii
   deploymentTarget:
-    iOS: "15.2"
+    iOS: "16.0"
   xcodeVersion: "16.0"
   generateEmptyDirectories: true
 
 settings:
   base:
     SWIFT_VERSION: "5.9"
-    DEVELOPMENT_TEAM: ""
 
 targets:
   SamGlasses:
@@ -17,10 +16,17 @@ targets:
     platform: iOS
     sources:
       - path: SamGlasses
-    info:
-      path: SamGlasses/Info.plist
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.dvbii.samglasses
-        INFOPLIST_FILE: SamGlasses/Info.plist
-        GENERATE_INFOPLIST_FILE: false
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: H2QXM8TKKX
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_CFBundleDisplayName: "Sam Glasses"
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown"
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "Sam Glasses needs microphone access to record your voice for AI conversations through your Ray-Ban glasses."
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "Sam Glasses uses speech recognition to transcribe your voice commands."
+        INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: "Sam Glasses connects to your Meta Ray-Ban glasses via Bluetooth for audio routing."
+        INFOPLIST_KEY_NSLocalNetworkUsageDescription: "Sam Glasses connects to your local OpenClaw gateway for AI processing."

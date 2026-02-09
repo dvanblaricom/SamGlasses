@@ -100,9 +100,10 @@ class AudioManager: NSObject, ObservableObject {
         
         // Check current audio route for Bluetooth devices
         let currentRoute = audioSession.currentRoute
+        let btTypes: [AVAudioSession.Port] = [.bluetoothHFP, .bluetoothA2DP, .bluetoothLE]
         
         for output in currentRoute.outputs {
-            if output.portType == .bluetoothHFP {
+            if btTypes.contains(output.portType) {
                 devices.append(AudioDevice(
                     id: output.uid,
                     name: output.portName,
@@ -112,7 +113,7 @@ class AudioManager: NSObject, ObservableObject {
         }
         
         for input in currentRoute.inputs {
-            if input.portType == .bluetoothHFP {
+            if btTypes.contains(input.portType) {
                 devices.append(AudioDevice(
                     id: input.uid,
                     name: input.portName,
@@ -129,8 +130,9 @@ class AudioManager: NSObject, ObservableObject {
     
     private func checkBluetoothConnection() {
         let route = audioSession.currentRoute
-        isBluetoothConnected = route.outputs.contains { $0.portType == .bluetoothHFP } ||
-                               route.inputs.contains { $0.portType == .bluetoothHFP }
+        let btTypes: [AVAudioSession.Port] = [.bluetoothHFP, .bluetoothA2DP, .bluetoothLE]
+        isBluetoothConnected = route.outputs.contains { btTypes.contains($0.portType) } ||
+                               route.inputs.contains { btTypes.contains($0.portType) }
     }
     
     func selectAudioDevice(_ device: AudioDevice) {

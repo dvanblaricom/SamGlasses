@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,9 +25,8 @@
 		1771CACEE9A005056C2E02DB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1F3FB9F095865B057BD6594E /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		634F87B33B43AB50196390F2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		8BD1EA79B332A454246B8D63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		986833820586267059A7866D /* ConversationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationMessage.swift; sourceTree = "<group>"; };
-		A0BE4A80E7FD97D98C722951 /* SamGlasses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamGlasses.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0BE4A80E7FD97D98C722951 /* SamGlasses.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SamGlasses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A347F6497F5C98B378DCD866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A40F0B75D754DE8354F6630F /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
 		C91838D45B00284EDB46E4F0 /* MWDAT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = MWDAT.plist; sourceTree = "<group>"; };
@@ -109,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				A347F6497F5C98B378DCD866 /* Assets.xcassets */,
-				8BD1EA79B332A454246B8D63 /* Info.plist */,
 				1EDFEA6FC6E421F19D014420 /* App */,
 				205D1D91B23F4CB627AB0459 /* Models */,
 				66AB97FA215F59B41D36D347 /* Resources */,
@@ -149,6 +147,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					25FF0A0C7E1F475FBC53A707 = {
+						DevelopmentTeam = H2QXM8TKKX;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = E941222F7EF45CB7ECE0C427 /* Build configuration list for PBXProject "SamGlasses" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -160,6 +164,7 @@
 			);
 			mainGroup = 0FAF1C4995AA06D1E2C6678A;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -205,9 +210,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H2QXM8TKKX;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = SamGlasses/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sam Glasses";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Sam Glasses connects to your Meta Ray-Ban glasses via Bluetooth for audio routing.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Sam Glasses connects to your local OpenClaw gateway for AI processing.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sam Glasses needs microphone access to record your voice for AI conversations through your Ray-Ban glasses.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Sam Glasses uses speech recognition to transcribe your voice commands.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -253,7 +266,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -270,7 +282,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -317,7 +329,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -328,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,9 +355,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H2QXM8TKKX;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = SamGlasses/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sam Glasses";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Sam Glasses connects to your Meta Ray-Ban glasses via Bluetooth for audio routing.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Sam Glasses connects to your local OpenClaw gateway for AI processing.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sam Glasses needs microphone access to record your voice for AI conversations through your Ray-Ban glasses.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Sam Glasses uses speech recognition to transcribe your voice commands.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

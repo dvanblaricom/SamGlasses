@@ -33,8 +33,8 @@ struct SettingsView: View {
                         Text("Gateway URL")
                         TextField("https://your-gateway.example.com", text: $gatewayURL)
                             .textFieldStyle(.roundedBorder)
-                            .onChange(of: gatewayURL) {
-                                openClawClient.updateBaseURL(gatewayURL)
+                            .onChange(of: gatewayURL) { newValue in
+                                openClawClient.updateBaseURL(newValue)
                             }
                     }
                     
@@ -50,9 +50,9 @@ struct SettingsView: View {
                         
                         SecureField("Enter your OpenClaw auth token", text: $authToken)
                             .textFieldStyle(.roundedBorder)
-                            .onChange(of: authToken) {
-                                if !authToken.isEmpty {
-                                    openClawClient.updateAuthToken(authToken)
+                            .onChange(of: authToken) { newValue in
+                                if !newValue.isEmpty {
+                                    openClawClient.updateAuthToken(newValue)
                                 }
                             }
                     }
@@ -81,8 +81,8 @@ struct SettingsView: View {
                                 .tag(device as AudioDevice?)
                             }
                         }
-                        .onChange(of: selectedAudioDevice) {
-                            if let device = selectedAudioDevice {
+                        .onChange(of: selectedAudioDevice) { newValue in
+                            if let device = newValue {
                                 audioManager.selectAudioDevice(device)
                             }
                         }
@@ -102,8 +102,8 @@ struct SettingsView: View {
                 // Speech Recognition
                 Section("Speech Recognition") {
                     Toggle("Use On-Device Recognition", isOn: $useOnDeviceSpeech)
-                        .onChange(of: useOnDeviceSpeech) {
-                            speechManager.setOnDeviceRecognition(useOnDeviceSpeech)
+                        .onChange(of: useOnDeviceSpeech) { newValue in
+                            speechManager.setOnDeviceRecognition(newValue)
                         }
                     
                     Picker("Language", selection: $preferredLanguage) {
@@ -116,8 +116,8 @@ struct SettingsView: View {
                         Text("Portuguese").tag("pt-BR")
                         Text("Japanese").tag("ja-JP")
                     }
-                    .onChange(of: preferredLanguage) {
-                        speechManager.setLanguage(preferredLanguage)
+                    .onChange(of: preferredLanguage) { newValue in
+                        speechManager.setLanguage(newValue)
                     }
                     
                     HStack {
@@ -148,8 +148,8 @@ struct SettingsView: View {
                             .tag(voice.id)
                         }
                     }
-                    .onChange(of: selectedVoice) {
-                        ttsManager.setVoice(selectedVoice)
+                    .onChange(of: selectedVoice) { newValue in
+                        ttsManager.setVoice(newValue)
                     }
                     
                     VStack {
@@ -161,8 +161,8 @@ struct SettingsView: View {
                         }
                         
                         Slider(value: $speechRate, in: 0.5...2.0, step: 0.1)
-                            .onChange(of: speechRate) {
-                                ttsManager.setSpeechRate(speechRate)
+                            .onChange(of: speechRate) { newValue in
+                                ttsManager.setSpeechRate(newValue)
                             }
                     }
                     
@@ -203,9 +203,9 @@ struct SettingsView: View {
                             .foregroundColor(.gray)
                     }
                     
-                    Link("GitHub Repository", destination: URL(string: "https://github.com/dvavasour/samglasses")!)
+                    Link("GitHub Repository", destination: URL(string: "https://github.com/dvanblaricom/SamGlasses")!)
                     
-                    Link("OpenClaw Documentation", destination: URL(string: "https://docs.openclaw.dev")!)
+                    Link("OpenClaw Documentation", destination: URL(string: "https://docs.openclaw.ai")!)
                 }
             }
             .navigationTitle("Settings")
@@ -230,13 +230,8 @@ struct SettingsView: View {
     
     // MARK: - Helper Methods
     private func loadSettings() {
-        // Load current auth token if available
         authToken = KeychainHelper.shared.getAuthToken() ?? ""
-        
-        // Load current gateway URL
         gatewayURL = openClawClient.baseURL
-        
-        // Load current settings from managers
         selectedAudioDevice = audioManager.currentAudioDevice
         useOnDeviceSpeech = speechManager.useOnDeviceRecognition
         preferredLanguage = speechManager.preferredLanguage

@@ -1,0 +1,388 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0448000B9E3403BCC80D405F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A347F6497F5C98B378DCD866 /* Assets.xcassets */; };
+		208758D947F16C764CD2C8F2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F87B33B43AB50196390F2 /* SettingsView.swift */; };
+		302A35E104CCDF88E47BFF5B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771CACEE9A005056C2E02DB /* MainView.swift */; };
+		3995DCD687B744043EC39BC0 /* OpenClawClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5440F8B9028C58D51B7F11 /* OpenClawClient.swift */; };
+		45517EB8750E8AF928A48E99 /* MWDAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = C91838D45B00284EDB46E4F0 /* MWDAT.plist */; };
+		4BAF8E9BCA6A0D47BB564BC0 /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986833820586267059A7866D /* ConversationMessage.swift */; };
+		5E9E70C7FB9EFB95C348A0FF /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0B0A5D5A340C842B84775E /* AudioManager.swift */; };
+		7B326FFD7C04786021D4FBCF /* SamGlassesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186C7B10C0D896643D82B3F /* SamGlassesApp.swift */; };
+		CC70581CB53A146D171F54B4 /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F0B75D754DE8354F6630F /* SpeechManager.swift */; };
+		D730924A4269B683061C4569 /* TTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21A44A39C412A56D680CA9 /* TTSManager.swift */; };
+		E433FE975CD27BD8C9BD2131 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FB9F095865B057BD6594E /* KeychainHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1186C7B10C0D896643D82B3F /* SamGlassesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamGlassesApp.swift; sourceTree = "<group>"; };
+		1771CACEE9A005056C2E02DB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1F3FB9F095865B057BD6594E /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		634F87B33B43AB50196390F2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8BD1EA79B332A454246B8D63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		986833820586267059A7866D /* ConversationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationMessage.swift; sourceTree = "<group>"; };
+		A0BE4A80E7FD97D98C722951 /* SamGlasses.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SamGlasses.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A347F6497F5C98B378DCD866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A40F0B75D754DE8354F6630F /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
+		C91838D45B00284EDB46E4F0 /* MWDAT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = MWDAT.plist; sourceTree = "<group>"; };
+		DE5440F8B9028C58D51B7F11 /* OpenClawClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenClawClient.swift; sourceTree = "<group>"; };
+		FA21A44A39C412A56D680CA9 /* TTSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSManager.swift; sourceTree = "<group>"; };
+		FB0B0A5D5A340C842B84775E /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0FAF1C4995AA06D1E2C6678A = {
+			isa = PBXGroup;
+			children = (
+				B4BBEA981D9804D9E45FC721 /* SamGlasses */,
+				6843FF40261611DE07D467B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1EDFEA6FC6E421F19D014420 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1186C7B10C0D896643D82B3F /* SamGlassesApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1F874E9191E50007FE696A41 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FB0B0A5D5A340C842B84775E /* AudioManager.swift */,
+				DE5440F8B9028C58D51B7F11 /* OpenClawClient.swift */,
+				A40F0B75D754DE8354F6630F /* SpeechManager.swift */,
+				FA21A44A39C412A56D680CA9 /* TTSManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		205D1D91B23F4CB627AB0459 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				986833820586267059A7866D /* ConversationMessage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66AB97FA215F59B41D36D347 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C91838D45B00284EDB46E4F0 /* MWDAT.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6843FF40261611DE07D467B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0BE4A80E7FD97D98C722951 /* SamGlasses.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7EC5D36601F8267E13151985 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1F3FB9F095865B057BD6594E /* KeychainHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B15881BA0490CBE3019B72FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1771CACEE9A005056C2E02DB /* MainView.swift */,
+				634F87B33B43AB50196390F2 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4BBEA981D9804D9E45FC721 /* SamGlasses */ = {
+			isa = PBXGroup;
+			children = (
+				A347F6497F5C98B378DCD866 /* Assets.xcassets */,
+				8BD1EA79B332A454246B8D63 /* Info.plist */,
+				1EDFEA6FC6E421F19D014420 /* App */,
+				205D1D91B23F4CB627AB0459 /* Models */,
+				66AB97FA215F59B41D36D347 /* Resources */,
+				1F874E9191E50007FE696A41 /* Services */,
+				7EC5D36601F8267E13151985 /* Utilities */,
+				B15881BA0490CBE3019B72FC /* Views */,
+			);
+			path = SamGlasses;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		25FF0A0C7E1F475FBC53A707 /* SamGlasses */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DD888474A319892DA6AB9A6 /* Build configuration list for PBXNativeTarget "SamGlasses" */;
+			buildPhases = (
+				C10DAB02048E91E4B3E80E1F /* Sources */,
+				3CDB58EE6E5CFFD74DC3B577 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SamGlasses;
+			packageProductDependencies = (
+			);
+			productName = SamGlasses;
+			productReference = A0BE4A80E7FD97D98C722951 /* SamGlasses.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6D29C565A7D00B541DCAD6D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					25FF0A0C7E1F475FBC53A707 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = E941222F7EF45CB7ECE0C427 /* Build configuration list for PBXProject "SamGlasses" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0FAF1C4995AA06D1E2C6678A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				25FF0A0C7E1F475FBC53A707 /* SamGlasses */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CDB58EE6E5CFFD74DC3B577 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0448000B9E3403BCC80D405F /* Assets.xcassets in Resources */,
+				45517EB8750E8AF928A48E99 /* MWDAT.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C10DAB02048E91E4B3E80E1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E9E70C7FB9EFB95C348A0FF /* AudioManager.swift in Sources */,
+				4BAF8E9BCA6A0D47BB564BC0 /* ConversationMessage.swift in Sources */,
+				E433FE975CD27BD8C9BD2131 /* KeychainHelper.swift in Sources */,
+				302A35E104CCDF88E47BFF5B /* MainView.swift in Sources */,
+				3995DCD687B744043EC39BC0 /* OpenClawClient.swift in Sources */,
+				7B326FFD7C04786021D4FBCF /* SamGlassesApp.swift in Sources */,
+				208758D947F16C764CD2C8F2 /* SettingsView.swift in Sources */,
+				CC70581CB53A146D171F54B4 /* SpeechManager.swift in Sources */,
+				D730924A4269B683061C4569 /* TTSManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		009D3D4950A7919115423791 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SamGlasses/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dvbii.samglasses;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0BDBAE03B890AAAE1CEFA378 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		38AD500175ADE2A32260DED3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		D7771180D149DCBBE1E16866 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SamGlasses/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dvbii.samglasses;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7DD888474A319892DA6AB9A6 /* Build configuration list for PBXNativeTarget "SamGlasses" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7771180D149DCBBE1E16866 /* Debug */,
+				009D3D4950A7919115423791 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E941222F7EF45CB7ECE0C427 /* Build configuration list for PBXProject "SamGlasses" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BDBAE03B890AAAE1CEFA378 /* Debug */,
+				38AD500175ADE2A32260DED3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F6D29C565A7D00B541DCAD6D /* Project object */;
+}

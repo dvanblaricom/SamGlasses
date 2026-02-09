@@ -1,0 +1,26 @@
+name: SamGlasses
+options:
+  bundleIdPrefix: com.dvbii
+  deploymentTarget:
+    iOS: "15.2"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  SamGlasses:
+    type: application
+    platform: iOS
+    sources:
+      - path: SamGlasses
+    info:
+      path: SamGlasses/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dvbii.samglasses
+        INFOPLIST_FILE: SamGlasses/Info.plist
+        GENERATE_INFOPLIST_FILE: false

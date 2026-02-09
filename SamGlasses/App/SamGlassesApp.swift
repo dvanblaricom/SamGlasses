@@ -31,18 +31,17 @@ struct SamGlassesApp: App {
     
     /// Setup and configure services on app launch
     private func setupServices() {
-        // Configure audio session for Bluetooth HFP
-        audioManager.setupAudioSession()
-        
-        // Initialize speech recognition
-        speechManager.requestSpeechRecognitionPermission()
-        
-        // Wire up service dependencies
+        // Wire up service dependencies first
         speechManager.openClawClient = openClawClient
         ttsManager.audioManager = audioManager
         ttsManager.openClawClient = openClawClient
         
         // Load saved settings
         openClawClient.loadSettings()
+        
+        // Initialize services (deferred from init to avoid crashes)
+        audioManager.setupAudioSession()
+        speechManager.setup()
+        speechManager.requestSpeechRecognitionPermission()
     }
 }

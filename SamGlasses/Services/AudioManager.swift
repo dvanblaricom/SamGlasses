@@ -30,8 +30,8 @@ class AudioManager: NSObject, ObservableObject {
     
     override init() {
         super.init()
-        setupAudioSession()
-        startMonitoringAudioRoutes()
+        // Defer audio setup until explicitly called — initializing
+        // AVAudioSession too early crashes on real devices
     }
     
     // MARK: - Audio Session Setup
@@ -45,6 +45,9 @@ class AudioManager: NSObject, ObservableObject {
             )
             
             try audioSession.setActive(true)
+            
+            // Start monitoring audio route changes
+            startMonitoringAudioRoutes()
             
             // Update device list
             updateAvailableDevices()

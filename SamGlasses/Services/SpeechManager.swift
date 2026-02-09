@@ -34,6 +34,10 @@ class SpeechManager: NSObject, ObservableObject {
     
     override init() {
         super.init()
+        // Defer speech setup to avoid crashes on real devices
+    }
+    
+    func setup() {
         setupSpeechRecognizer()
     }
     

@@ -44,16 +44,16 @@ class OpenClawClient: ObservableObject {
     
     // MARK: - Initialization
     init() {
-        loadSettings()
-        Task {
-            await checkConnection()
-        }
+        // Defer network calls to loadSettings() / onAppear
     }
     
     // MARK: - Settings Management
     func loadSettings() {
         // Settings are loaded from Keychain for auth token
         // URL is hardcoded for now but could be configurable
+        Task {
+            await checkConnection()
+        }
     }
     
     func updateAuthToken(_ token: String) {

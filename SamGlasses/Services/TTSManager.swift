@@ -11,7 +11,7 @@ import Combine
 
 /// Manages text-to-speech conversion and playback through glasses speakers
 @MainActor
-class TTSManager: ObservableObject {
+class TTSManager: NSObject, ObservableObject {
     // MARK: - Published Properties
     @Published var isGenerating = false
     @Published var isSpeaking = false
@@ -31,7 +31,8 @@ class TTSManager: ObservableObject {
     private var speechSynthesizer = AVSpeechSynthesizer()
     private var currentUtterance: AVSpeechUtterance?
     
-    init() {
+    override init() {
+        super.init()
         setupSpeechSynthesizer()
         setupAvailableVoices()
     }
@@ -199,23 +200,21 @@ class TTSManager: ObservableObject {
 
 // MARK: - AVSpeechSynthesizerDelegate
 extension TTSManager: AVSpeechSynthesizerDelegate {
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         // Already set isSpeaking = true when we started
     }
     
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         Task { @MainActor in
-            if currentUtterance == utterance {
-                isSpeaking = false
-                currentUtterance = nil
-            }
+            self.isSpeaking = false
+            self.currentUtterance = nil
         }
     }
     
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
         Task { @MainActor in
-            isSpeaking = false
-            currentUtterance = nil
+            self.isSpeaking = false
+            self.currentUtterance = nil
         }
     }
 }

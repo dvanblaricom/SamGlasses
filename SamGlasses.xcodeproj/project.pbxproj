@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,7 +27,7 @@
 		634F87B33B43AB50196390F2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8BD1EA79B332A454246B8D63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		986833820586267059A7866D /* ConversationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationMessage.swift; sourceTree = "<group>"; };
-		A0BE4A80E7FD97D98C722951 /* SamGlasses.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SamGlasses.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0BE4A80E7FD97D98C722951 /* SamGlasses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamGlasses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A347F6497F5C98B378DCD866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A40F0B75D754DE8354F6630F /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
 		C91838D45B00284EDB46E4F0 /* MWDAT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = MWDAT.plist; sourceTree = "<group>"; };
@@ -149,11 +149,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
-				TargetAttributes = {
-					25FF0A0C7E1F475FBC53A707 = {
-						DevelopmentTeam = "";
-					};
-				};
 			};
 			buildConfigurationList = E941222F7EF45CB7ECE0C427 /* Build configuration list for PBXProject "SamGlasses" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -165,7 +160,6 @@
 			);
 			mainGroup = 0FAF1C4995AA06D1E2C6678A;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -211,6 +205,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = H2QXM8TKKX;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SamGlasses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -349,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = H2QXM8TKKX;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SamGlasses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

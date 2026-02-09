@@ -296,7 +296,8 @@ class OpenClawClient: ObservableObject {
                     throw error
                 }
                 
-                if let httpResponse = (try? await urlSession.data(for: request)).1 as? HTTPURLResponse,
+                if let result = try? await urlSession.data(for: request),
+                   let httpResponse = result.1 as? HTTPURLResponse,
                    httpResponse.statusCode >= 400 && httpResponse.statusCode < 500 {
                     throw error
                 }

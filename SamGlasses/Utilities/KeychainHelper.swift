@@ -200,8 +200,6 @@ extension KeychainHelper {
             return "Memory allocation error"
         case errSecNotAvailable:
             return "Service not available"
-        case errSecUserCancel:
-            return "User canceled"
         case errSecBadReq:
             return "Bad request"
         case errSecInternalComponent:

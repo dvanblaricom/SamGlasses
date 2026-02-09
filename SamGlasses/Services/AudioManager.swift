@@ -63,11 +63,11 @@ class AudioManager: NSObject, ObservableObject {
             object: nil
         )
         
-        // Also monitor for Bluetooth state changes
+        // Also monitor for interruptions
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(audioRouteChanged),
-            name: AVAudioSession.categoryOptionsChangeNotification,
+            name: AVAudioSession.interruptionNotification,
             object: nil
         )
     }
@@ -243,15 +243,15 @@ class AudioManager: NSObject, ObservableObject {
 
 // MARK: - AVAudioRecorderDelegate
 extension AudioManager: AVAudioRecorderDelegate {
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    nonisolated func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         Task { @MainActor in
-            isRecording = false
+            self.isRecording = false
         }
     }
     
-    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+    nonisolated func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         Task { @MainActor in
-            isRecording = false
+            self.isRecording = false
         }
         print("Recording error: \(error?.localizedDescription ?? "Unknown")")
     }
@@ -259,15 +259,15 @@ extension AudioManager: AVAudioRecorderDelegate {
 
 // MARK: - AVAudioPlayerDelegate
 extension AudioManager: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         Task { @MainActor in
-            isPlaying = false
+            self.isPlaying = false
         }
     }
     
-    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+    nonisolated func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         Task { @MainActor in
-            isPlaying = false
+            self.isPlaying = false
         }
         print("Playback error: \(error?.localizedDescription ?? "Unknown")")
     }

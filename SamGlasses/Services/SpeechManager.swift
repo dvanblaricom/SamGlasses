@@ -215,9 +215,9 @@ class SpeechManager: NSObject, ObservableObject {
 
 // MARK: - SFSpeechRecognizerDelegate
 extension SpeechManager: SFSpeechRecognizerDelegate {
-    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+    nonisolated func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         Task { @MainActor in
-            isSpeechRecognitionAvailable = available
+            self.isSpeechRecognitionAvailable = available
         }
     }
 }

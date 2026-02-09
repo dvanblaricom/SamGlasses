@@ -29,7 +29,7 @@ class OpenClawClient: ObservableObject {
             .replacingOccurrences(of: "ws://", with: "http://")
     }
     
-    private let ttsPath = "/tts"
+    private let ttsPath = "/tts/v1/audio/speech"
     private let whisperPath = "/v1/audio/transcriptions"
     
     private var authToken: String? {
@@ -331,7 +331,7 @@ class OpenClawClient: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         addAuthHeaders(to: &request)
         
-        let ttsRequest = TTSRequest(text: text, voice: "nova")
+        let ttsRequest = TTSRequest(text: text, voice: "en-US-AvaNeural")
         request.httpBody = try JSONEncoder().encode(ttsRequest)
         
         let (data, response) = try await urlSession.data(for: request)
@@ -650,8 +650,13 @@ struct GatewayResponse {
 // MARK: - API Models (kept for TTS/Whisper HTTP endpoints)
 
 struct TTSRequest: Codable {
-    let text: String
+    let input: String
     let voice: String
+    
+    init(text: String, voice: String) {
+        self.input = text
+        self.voice = voice
+    }
 }
 
 struct TranscriptionResponse: Codable {

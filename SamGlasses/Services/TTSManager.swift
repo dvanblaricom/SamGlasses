@@ -16,7 +16,7 @@ class TTSManager: NSObject, ObservableObject {
     @Published var isGenerating = false
     @Published var isSpeaking = false
     @Published var availableVoices: [TTSVoice] = []
-    @Published var selectedVoice = "nova" // Default voice
+    @Published var selectedVoice = "en-US-AvaNeural" // Warm, expressive female voice
     
     // MARK: - Configuration
     @Published var speechRate: Float = 1.0
@@ -45,12 +45,12 @@ class TTSManager: NSObject, ObservableObject {
     private func setupAvailableVoices() {
         // Common Edge TTS voices - would be better to fetch from API
         availableVoices = [
-            TTSVoice(id: "nova", name: "Nova", language: "en-US", gender: .female),
-            TTSVoice(id: "alloy", name: "Alloy", language: "en-US", gender: .neutral),
-            TTSVoice(id: "echo", name: "Echo", language: "en-US", gender: .male),
-            TTSVoice(id: "fable", name: "Fable", language: "en-GB", gender: .male),
-            TTSVoice(id: "onyx", name: "Onyx", language: "en-US", gender: .male),
-            TTSVoice(id: "shimmer", name: "Shimmer", language: "en-US", gender: .female)
+            TTSVoice(id: "en-US-AvaNeural", name: "Ava", language: "en-US", gender: .female),
+            TTSVoice(id: "en-US-EmmaMultilingualNeural", name: "Emma", language: "en-US", gender: .female),
+            TTSVoice(id: "en-US-JennyNeural", name: "Jenny", language: "en-US", gender: .female),
+            TTSVoice(id: "en-US-AriaNeural", name: "Aria", language: "en-US", gender: .female),
+            TTSVoice(id: "en-US-GuyNeural", name: "Guy", language: "en-US", gender: .male),
+            TTSVoice(id: "en-US-AndrewNeural", name: "Andrew", language: "en-US", gender: .male)
         ]
     }
     

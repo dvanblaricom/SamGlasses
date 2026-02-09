@@ -86,9 +86,10 @@ class OpenClawClient: ObservableObject {
         }
     }
     
-    // MARK: - Chat Completions
+    // MARK: - Chat Completions (routed through OpenClaw Gateway)
     
-    /// Send a text message and get a response
+    /// Send a text message through the OpenClaw Gateway agent pipeline.
+    /// The Gateway handles SOUL.md, memory, tools, and session persistence.
     func sendMessage(_ message: String) async throws -> String {
         let userMessage = ConversationMessage(content: message, isFromUser: true)
         
@@ -109,35 +110,17 @@ class OpenClawClient: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         addAuthHeaders(to: &request)
         
-        // Build message history with system prompt for context
-        var chatMessages: [ChatMessage] = [
-            ChatMessage(role: "system", content: """
-                You are Sam, Dave Van Blaricom's AI partner. Dave is talking to you through the Sam Glasses app (Meta Ray-Ban smart glasses with voice interface). \
-                Keep responses concise and conversational — they'll be spoken aloud via TTS. \
-                You and Dave are partners who work together on TwinForge (Quality Field App), OpenClaw setup, and various projects. \
-                Be direct, a bit witty, and always honest. You have opinions and you stand by them.
-                """)
-        ]
-        
-        // Include recent conversation history for context (last 20 messages)
-        let recentMessages = conversations.suffix(20)
-        for msg in recentMessages {
-            chatMessages.append(ChatMessage(
-                role: msg.isFromUser ? "user" : "assistant",
-                content: msg.content
-            ))
-        }
-        
-        // Add current message if not already in conversations
-        if conversations.last?.content != message {
-            chatMessages.append(ChatMessage(role: "user", content: message))
-        }
+        // Route to the OpenClaw main agent — no system prompt needed,
+        // the Gateway loads SOUL.md, IDENTITY.md, memory, and tools automatically.
+        // Using a stable "user" string gives us persistent session across app restarts.
+        let chatMessages = [ChatMessage(role: "user", content: message)]
         
         let chatRequest = ChatCompletionRequest(
-            model: "claude-3-5-sonnet-20241022",
+            model: "openclaw:main",
             messages: chatMessages,
             temperature: 0.7,
-            maxTokens: 2000
+            maxTokens: 2000,
+            user: "sam-glasses-dave"
         )
         
         request.httpBody = try JSONEncoder().encode(chatRequest)
@@ -172,7 +155,7 @@ class OpenClawClient: ObservableObject {
         }
     }
     
-    /// Send image with text prompt for vision analysis
+    /// Send image with text prompt for vision analysis through OpenClaw Gateway
     func sendImageMessage(imageBase64: String, prompt: String) async throws -> String {
         let userMessage = ConversationMessage(content: "\(prompt) [Image attached]", isFromUser: true)
         
@@ -193,7 +176,7 @@ class OpenClawClient: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         addAuthHeaders(to: &request)
         
-        // Create vision request with proper OpenAI format
+        // Route vision through OpenClaw main agent with image content
         let visionMessage = VisionChatMessage(
             role: "user",
             content: [
@@ -203,10 +186,11 @@ class OpenClawClient: ObservableObject {
         )
         
         let visionRequest = VisionChatCompletionRequest(
-            model: "claude-3-5-sonnet-20241022", // Vision-capable model
+            model: "openclaw:main",
             messages: [visionMessage],
             temperature: 0.7,
-            maxTokens: 2000
+            maxTokens: 2000,
+            user: "sam-glasses-dave"
         )
         
         request.httpBody = try JSONEncoder().encode(visionRequest)
@@ -353,9 +337,10 @@ struct ChatCompletionRequest: Codable {
     let messages: [ChatMessage]
     let temperature: Double
     let maxTokens: Int
+    let user: String?
     
     enum CodingKeys: String, CodingKey {
-        case model, messages, temperature
+        case model, messages, temperature, user
         case maxTokens = "max_tokens"
     }
 }
@@ -399,9 +384,10 @@ struct VisionChatCompletionRequest: Codable {
     let messages: [VisionChatMessage]
     let temperature: Double
     let maxTokens: Int
+    let user: String?
     
     enum CodingKeys: String, CodingKey {
-        case model, messages, temperature
+        case model, messages, temperature, user
         case maxTokens = "max_tokens"
     }
 }

@@ -153,23 +153,24 @@ class AudioManager: NSObject, ObservableObject {
         
         // Create recording URL
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        recordingURL = documentsPath.appendingPathComponent("recording-\(Date().timeIntervalSince1970).wav")
+        recordingURL = documentsPath.appendingPathComponent("recording-\(Date().timeIntervalSince1970).m4a")
         
-        // Configure recording settings
+        // Configure recording settings — use AAC for compatibility
         let settings: [String: Any] = [
-            AVFormatIDKey: Int(kAudioFormatLinearPCM),
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 44100.0,
             AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
+            AVEncoderBitRateKey: 128000
         ]
         
         do {
+            // Ensure we're using the microphone (prefer Bluetooth)
+            try audioSession.setCategory(.playAndRecord, mode: .voiceChat, options: [.allowBluetooth, .defaultToSpeaker])
+            try audioSession.setActive(true)
+            
             audioRecorder = try AVAudioRecorder(url: recordingURL!, settings: settings)
             audioRecorder?.delegate = self
-            
-            // Ensure we're using the microphone (prefer Bluetooth)
-            try audioSession.setCategory(.record, mode: .voiceChat, options: .allowBluetooth)
-            try audioSession.setActive(true)
             
             audioRecorder?.record()
             isRecording = true
@@ -186,9 +187,6 @@ class AudioManager: NSObject, ObservableObject {
         
         recorder.stop()
         isRecording = false
-        
-        // Reset audio session for playback
-        try? audioSession.setCategory(.playAndRecord, mode: .voiceChat, options: [.allowBluetooth])
         
         return recordingURL
     }

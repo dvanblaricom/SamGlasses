@@ -226,7 +226,8 @@ struct MainView: View {
     
     private func startRecording() async {
         do {
-            recordingURL = try await audioManager.startRecording()
+            // Use live speech recognition — transcribes as you talk
+            try await speechManager.startListening()
             isRecording = true
         } catch {
             showError("Failed to start recording: \(error.localizedDescription)")
@@ -236,18 +237,20 @@ struct MainView: View {
     private func stopRecordingAndProcess() async {
         isRecording = false
         
-        guard let audioURL = await audioManager.stopRecording() else {
-            showError("No recording to process")
+        // Stop listening and grab the transcription
+        speechManager.stopListening()
+        
+        // Get the recognized text (partial or final)
+        let transcription = speechManager.recognizedText.isEmpty
+            ? speechManager.partialText
+            : speechManager.recognizedText
+        
+        guard !transcription.isEmpty else {
+            showError("No speech detected. Try speaking louder or closer to the mic.")
             return
         }
         
         do {
-            // Load audio data
-            let audioData = try Data(contentsOf: audioURL)
-            
-            // Transcribe audio
-            let transcription = try await speechManager.transcribeAudio(audioData: audioData)
-            
             // Send to OpenClaw and get response
             let response = try await openClawClient.sendMessage(transcription)
             

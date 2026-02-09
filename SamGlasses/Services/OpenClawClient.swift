@@ -109,12 +109,33 @@ class OpenClawClient: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         addAuthHeaders(to: &request)
         
-        // Create chat completion request
+        // Build message history with system prompt for context
+        var chatMessages: [ChatMessage] = [
+            ChatMessage(role: "system", content: """
+                You are Sam, Dave Van Blaricom's AI partner. Dave is talking to you through the Sam Glasses app (Meta Ray-Ban smart glasses with voice interface). \
+                Keep responses concise and conversational — they'll be spoken aloud via TTS. \
+                You and Dave are partners who work together on TwinForge (Quality Field App), OpenClaw setup, and various projects. \
+                Be direct, a bit witty, and always honest. You have opinions and you stand by them.
+                """)
+        ]
+        
+        // Include recent conversation history for context (last 20 messages)
+        let recentMessages = conversations.suffix(20)
+        for msg in recentMessages {
+            chatMessages.append(ChatMessage(
+                role: msg.isFromUser ? "user" : "assistant",
+                content: msg.content
+            ))
+        }
+        
+        // Add current message if not already in conversations
+        if conversations.last?.content != message {
+            chatMessages.append(ChatMessage(role: "user", content: message))
+        }
+        
         let chatRequest = ChatCompletionRequest(
-            model: "claude-3-5-sonnet-20241022", // Default model
-            messages: [
-                ChatMessage(role: "user", content: message)
-            ],
+            model: "claude-3-5-sonnet-20241022",
+            messages: chatMessages,
             temperature: 0.7,
             maxTokens: 2000
         )

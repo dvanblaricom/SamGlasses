@@ -75,9 +75,9 @@ class SpeechManager: NSObject, ObservableObject {
         // Cancel any ongoing recognition
         stopListening()
         
-        // Setup audio session
+        // Setup audio session — use playAndRecord to keep Bluetooth routing
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .defaultToSpeaker])
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         
         // Create recognition request
@@ -90,14 +90,13 @@ class SpeechManager: NSObject, ObservableObject {
         
         // Use on-device recognition when available
         if #available(iOS 13.0, *), useOnDeviceRecognition {
-            recognitionRequest.requiresOnDeviceRecognition = true
+            recognitionRequest.requiresOnDeviceRecognition = false // Avoid format issues
         }
         
-        // Setup audio input
+        // Setup audio input — use nil format to let the tap match the hardware
         let inputNode = audioEngine.inputNode
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
         
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] buffer, _ in
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: nil) { [weak self] buffer, _ in
             self?.recognitionRequest?.append(buffer)
         }
         
